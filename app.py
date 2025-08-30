@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv(override=True)
 
 line_bot_api = LineBotApi(os.environ["ACCESS_TOKEN"])
-handler = WebhookHandler(os.environ["channel_secret"])
+handler = WebhookHandler(os.environ["CHANNEL_SECRET"])
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ def index():
     return "You call index()"
 
 
-@app.route("callback", methods=["POST"])
+@app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
 
