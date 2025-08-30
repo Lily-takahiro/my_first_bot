@@ -41,7 +41,7 @@ def handle_message(event):
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     send_message = now
 
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=send_message.text))
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=send_message))
 
 
 if __name__ == "__main__":
