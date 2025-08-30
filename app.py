@@ -38,8 +38,19 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%Sだよ")
-    send_message = now
+    # 現在の日時を取得
+    now = datetime.now()
+
+    # 500年前の日時を計算
+    from datetime import timedelta
+
+    five_hundred_years_ago = now - timedelta(days=500 * 365)  # 簡易計算（うるう年は考慮しない）
+
+    # フォーマットして表示
+    current_time = now.strftime("%Y-%m-%d %H:%M:%S")
+    past_time = five_hundred_years_ago.strftime("%Y-%m-%d %H:%M:%S")
+
+    send_message = f"現在時刻: {current_time}\n500年前: {past_time}"
 
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=send_message))
 
